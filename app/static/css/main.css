@@ -1,0 +1,28 @@
+body {
+    padding: 10px;
+    background-color: #ccc;
+}
+#main-container {
+    position: relative;
+    top: 200px;
+}
+
+.chosen-container {
+    font-size: 18px;
+}
+.chosen-container-single .chosen-single {
+    height: 38px;
+    line-height: 38px;
+}
+.chosen-container-single .chosen-single div b {
+    background: url("chosen-sprite.png") no-repeat 2px 9px;
+}
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+    background-position: -16px 9px;
+}
+.chosen-container .chosen-results li {
+    line-height: 20px;
+}
+.chosen-container-single .chosen-single abbr {
+    top: 13px;
+}
