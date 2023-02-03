@@ -13,7 +13,7 @@ $select.chosen({
 $(document).ready(function() {
     $.ajax({
         url: '/all',
-        type: 'GET',
+        type: 'POST',
         success: function (response) {
             list = JSON.parse(response);
             $.each( list['name'], function(i, value) {

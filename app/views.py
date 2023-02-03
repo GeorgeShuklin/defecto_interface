@@ -1,23 +1,25 @@
 from flask import render_template, request
+from database import defects_base
 from app import app
 import json
+
 
 @app.route('/')
 @app.route('/main')
 def main():
     return render_template("main.html")
 
-@app.route('/all', methods=['GET'])
+@app.route('/all', methods=['POST'])
 def all():
-    list = {
-        'name': ['самолет', 'самолет', 'вертолет', 'самолет'],
-        'serial': ['643623', '68533', '832257', '6863232']
-    }
-    '''list = DefectsBase.all()'''
-    return json.dumps(list)
+    defect_database = defects_base.DefectsBase('database\defects_base.db')
+    plane_list = defect_database.all()
+    defect_database.close()
+    return json.dumps(plane_list)
 
 @app.route('/report', methods=['POST'])
 def report():
     data = request.get_json()
-    print('Отчет для', data['name'], '#', data['serial'])
+    defect_database = defects_base.DefectsBase('database\defects_base.db')
+    defect_database.report('reports', data['name'], data['serial'])
+    defect_database.close()
     return ''
